@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@200..1000&display=swap');
+
+:root {
+    --color-bg-1: white;
+    --color-bg-2: #dcdcdc;
+    --color-bg-3: #C5C5C5;
+    --color-bg-4: #AEAEAE;
+    --color-bg-5: #979797;
+    --color-bg-6: #808080;
+    --color-bg-7: #696969;
+    --color-bg-8: #525252;
+
+    --color-text-1: black;
+    --color-text-2: rgba(91, 91, 91, 0.745);
+
+    --color-theme-1: rgb(43, 77, 121);
+    --color-theme-2: rgb(94, 147, 175);
+    --color-theme-3: rgb(160, 200, 161);
+    --color-theme-4: rgb(160, 200, 161);
+
+    --color-danger-1: rgb(197, 57, 57);
+    --border-radius-sm: 5px;
+    --border-radius-md: 10px;
+
+    --box-shadow-sm: 2px 3px rgba(0, 0, 0, 0.1);
+
+    --padding-sm: 0.5rem;
+    --padding-md: 1rem;
+    --padding-lg: 1.5rem;   
+    --button-size-md: 2rem;
+    --button-size-lg: 2.5rem;
+    --max-width: 64rem;
+  }
+
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Public Sans', sans-serif;}
+
+input, textarea, button, select, option{font-family: inherit}
+
+.layout{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .header{
+        height: 3rem;
+        border-bottom: 1px solid black;
+    }
+    .content{
+        height: calc(100% - 3rem);
+    }
+}
