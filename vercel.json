@@ -1,8 +1,12 @@
 {
     "rewrites": [
-      {
-        "source": "/api/:match*",
-        "destination": "http://elevations.lipusblaz.com/:match*"
-      }
+        {
+            "source": "/api/:match*",
+            "destination": "http://elevations.lipusblaz.com/:match*"
+        },
+        {
+            "source": "/api/:match*/",
+            "destination": "http://elevations.lipusblaz.com/:match*/"
+        }
     ]
-  }
+}
