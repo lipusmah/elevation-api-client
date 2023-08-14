@@ -2,7 +2,7 @@
     import "../app.scss";
     import Header from "$lib/components/Header.svelte";
 	import { OpenAPI } from "$lib/api";
-    OpenAPI.BASE = "https://elevation.lipusblaz.com";
+    OpenAPI.BASE = "api";
 </script>
 
 <div class="layout">
