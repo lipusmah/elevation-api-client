@@ -19,29 +19,19 @@
 	import type { Feature } from 'ol';
 	import Fill from 'ol/style/Fill';
 	import type { Point } from 'ol/geom';
+	import Stroke from 'ol/style/Stroke';
+	import { drawStyle, pinStyle } from '$lib/utils/ol-style';
 
 	let olMap = $map ?? setupMap();
 	let draw: Draw;
 	let layer = new VectorLayer({
 		source: new VectorSource(),
-		style: new Style({
-			image: new Icon({
-				src: pinIcon,
-				anchor: [1, 0.5]
-			})
-		})
+		style: pinStyle
 	});
 	draw = new Draw({
 		source: new VectorSource(),
 		type: 'Point',
-		style: [
-			new Style({
-				image: new Circle({
-					radius: 2,
-					fill: new Fill({ color: '#FFFFFF' })
-				})
-			})
-		]
+		style: drawStyle
 	});
 	draw.on('drawend', async (ev) => {
 		await handleClick(ev.feature);
@@ -64,17 +54,19 @@
 		const coords = (<Point>feature.getGeometry()).getCoordinates();
 		ElevationService.getElevation(coords[0], coords[1])
 			.then((res) => {
-                if (res == null){
-                    message = 'No elevation data for location. Click on map to get elevation.';
-                    return;
-                }
+				if (res == null) {
+					message = 'No elevation data for location. Click on map to get elevation.';
+					return;
+				}
 				const s = layer.getSource();
 				s?.clear();
 				s?.addFeature(feature);
-				olMap.getView().fit(s?.getExtent(), { maxZoom: 14, duration: 1000 });
 				message = res.toFixed(2) + ' m';
 				olMap.getViewport().style.cursor = 'auto';
-                olMap.removeInteraction(draw);
+				olMap.removeInteraction(draw);
+				setTimeout(() => {
+					olMap.getView().fit(s?.getExtent(), { maxZoom: 14, duration: 1000 });
+				}, 10);
 			})
 			.catch((err) => (message = 'Error loading data'));
 	};
@@ -115,9 +107,9 @@
 	}
 	.info {
 		display: flex;
-        justify-content: space-between;
+		justify-content: space-between;
 		flex-direction: row;
-        min-width: 75%;
+		min-width: 75%;
 		gap: 1rem;
 		align-items: center;
 		position: absolute;
@@ -130,8 +122,8 @@
 		padding: 1rem 1.5rem;
 	}
 	.text {
-        font-size: larger;
-        font-weight: bold;
+		font-size: larger;
+		font-weight: bold;
 		display: flex;
 		flex-direction: row;
 		align-items: center;

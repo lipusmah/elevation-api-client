@@ -26,9 +26,8 @@
 	const tooltip = {
 		yAlign: 'bottom',
 		callbacks: {
-			title: (chart) => {
+			title: (chart: any[]) => {
 				dispatch('hover', chart[0].dataIndex);
-				console.log(chart[0].dataIndex);
 			}
 		}
 	};
@@ -52,7 +51,6 @@
 				beforeEvent(chart, args, pluginOptions) {
 					const event = args.event;
 					if (event.type == 'mouseout') {
-						console.log('mouseout');
 						dispatch('unhover');
 					}
 				}
